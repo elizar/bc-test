@@ -52,6 +52,13 @@ describe '[ Code ]' do
       result = Code.shortest_gap(input)
       expect(result).to eq(43020)
     end
+
+    it 'should find the shortest gap between two set of time in minutes' do
+      input = ['12:30AM-1:30AM', '2:30AM-10:30PM']
+
+      result = Code.shortest_gap(input, :minute => true)
+      expect(result).to eq(60)
+    end
   end
 
   describe 'Helper fn #sort' do

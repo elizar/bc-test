@@ -1,21 +1,5 @@
 module Code
 
-  # Sort values from array (ascending)
-  #
-  # Code.sort([4,1,2,5]) => [1,2,4,5]
-  def Code.sort(a)
-    # For readability and simplity
-    # let's use selection sort.
-    b = []
-    a.size.times do |i|
-      min = a.min
-      b << min
-      a.delete_at(a.index(min))
-    end
-
-    b
-  end
-
   # Sort characters in alphabetical order
   #
   # Given an input: 'acbaebfdg'
@@ -23,7 +7,7 @@ module Code
   #
   # Code.sort_chars('olelh') => 'hello'
   def Code.sort_chars(string)
-    return Code.sort(string).join
+    Code.sort(string).join
   end
 
   # Check if given word is a palindrome
@@ -71,7 +55,10 @@ module Code
   # Note: Returns number in seconds format.
   #
   # Code.shortest_gap(['6:00PM-6:01PM', '6:02AM-6:03AM']) => 43020
-  def Code.shortest_gap(arr)
+  #
+  # There's an optional param for setting returned val
+  # in minutes instead of second. Just pass `:minute  => true`
+  def Code.shortest_gap(arr, opt = { :minute => false })
     # Holds list of parsed time in seconds
     # format.
     time_list = []
@@ -103,8 +90,43 @@ module Code
       (time_list[2] - time_list[1]).abs
     ])
 
-    # First item should be the shortest
+    # Return and convert result into minute format if
+    # opt[:minute] is set to true
+    return results.shift/60 if opt[:minute] == true
+
+    # Otherwise just return the value
+    # in second (default format)
     results.shift
+  end
+
+
+  #########################################################
+  #
+  # HELPER FUNCTIONS
+  #
+  #########################################################
+
+  # Sort values from array (ascending)
+  #
+  # For readability and simplity
+  # let's we'll use selection sort.
+  #
+  # For more awesome algo related
+  # stuff, visit the link below:
+  #
+  # http://www.sorting-algorithms.com/
+  #
+  #
+  # Code.sort([4,1,2,5]) => [1,2,4,5]
+  def Code.sort(a)
+    b = []
+    a.size.times do |i|
+      min = a.min
+      b << min
+      a.delete_at(a.index(min))
+    end
+
+    b # return sorted array
   end
 
 end
