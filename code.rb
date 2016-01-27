@@ -108,8 +108,8 @@ module Code
 
   # Sort values from array (ascending)
   #
-  # For readability and simplity
-  # let's we'll use selection sort.
+  # For readability and simplity we'll just
+  # use selection sort.
   #
   # For more awesome algo related
   # stuff, visit the link below:
