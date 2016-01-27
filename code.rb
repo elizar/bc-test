@@ -64,13 +64,23 @@ module Code
   #
   # Code.shortest_gap(['6:00PM-6:01PM', '6:02AM-6:03AM']) => 717
   def Code.shortest_gap(arr)
-    arr.foreach do |e|
-      e.split('-').foreach do |t|
-        # convert tim into seconds format
-        #
+    h = []
+    arr.each do |e|
+      e.split('-').each do |t|
         hands = t.split(':'); # left-hand is hour & right is minute
+
+        h_hand = hands[0] # hour
+        m_hand = hands[1] # minute
+
+        h_hand = h_hand.to_i
+        h_hand = h_hand + 12 if /pm/i.match(t) # Convert to 24hr if PM
+        m_hand = m_hand.sub(/(am|pm)/i, '').to_i
+        t_in_seconds = h_hand * 3600 + m_hand * 60
+        h.push t_in_seconds
       end
     end
+
+    h
   end
 
 end
