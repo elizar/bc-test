@@ -11,6 +11,9 @@
 2. And then `gem install rspec`
 3. Run the test with `rspec`
 
+Result should look something like this:
+[result](http://cl.ly/1v1r2t0G3d34)
+
 &nbsp
 &nbsp
 &nbsp
