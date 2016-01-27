@@ -11,5 +11,5 @@
 2. And then `gem install rspec`
 3. Run the test with `rspec`
 
-
-
+---
+&copy; 2016 Elizar Pepino.

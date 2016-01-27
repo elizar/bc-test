@@ -1,12 +1,9 @@
 module Code
 
-  # Sort characters in alphabetical order
+  # Sort values from array (ascending)
   #
-  # Given an input: 'acbaebfdg'
-  # Should output: 'aabbcdefg'
-  #
-  # Code.sort_chars('olelh') => 'hello'
-  def Code.sort_chars(a)
+  # Code.sort([4,1,2,5]) => [1,2,4,5]
+  def Code.sort(a)
     # For readability and simplity
     # let's use selection sort.
     b = []
@@ -16,7 +13,17 @@ module Code
       a.delete_at(a.index(min))
     end
 
-    return b.join
+    b
+  end
+
+  # Sort characters in alphabetical order
+  #
+  # Given an input: 'acbaebfdg'
+  # Should output: 'aabbcdefg'
+  #
+  # Code.sort_chars('olelh') => 'hello'
+  def Code.sort_chars(string)
+    return Code.sort(string).join
   end
 
   # Check if given word is a palindrome
@@ -59,28 +66,45 @@ module Code
     new_arr
   end
 
-  # Find the shortest gap time between
-  # two sets of time.
+  # Find the shortest gap time between two sets of time.
   #
-  # Code.shortest_gap(['6:00PM-6:01PM', '6:02AM-6:03AM']) => 717
+  # Note: Returns number in seconds format.
+  #
+  # Code.shortest_gap(['6:00PM-6:01PM', '6:02AM-6:03AM']) => 43020
   def Code.shortest_gap(arr)
-    h = []
+    # Holds list of parsed time in seconds
+    # format.
+    time_list = []
+
     arr.each do |e|
       e.split('-').each do |t|
-        hands = t.split(':'); # left-hand is hour & right is minute
+        # left-hand is hour & right is minute
+        digits = t.split(':');
 
-        h_hand = hands[0] # hour
-        m_hand = hands[1] # minute
+        h = digits[0] # hour
+        m = digits[1] # minute
 
-        h_hand = h_hand.to_i
-        h_hand = h_hand + 12 if /pm/i.match(t) # Convert to 24hr if PM
-        m_hand = m_hand.sub(/(am|pm)/i, '').to_i
-        t_in_seconds = h_hand * 3600 + m_hand * 60
-        h.push t_in_seconds
+        # hours
+        h = h.to_i
+        h = h + 12 if /pm/i.match(t) # Convert to 24hr if PM
+
+        # minutes
+        m = m.sub(/(am|pm)/i, '').to_i
+
+        t_in_seconds = h * 3600 + m * 60
+        time_list << t_in_seconds
       end
     end
 
-    h
+    results = Code.sort([
+      (time_list[3] - time_list[0]).abs,
+      (time_list[3] - time_list[1]).abs,
+      (time_list[2] - time_list[0]).abs,
+      (time_list[2] - time_list[1]).abs
+    ])
+
+    # First item should be the shortest
+    results.shift
   end
 
 end

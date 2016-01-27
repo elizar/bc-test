@@ -2,7 +2,7 @@ require_relative '../code.rb'
 
 describe '[ Code ]' do
 
-  describe '#sort_chars' do
+  describe 'Question 1. #sort_chars' do
     it 'should sort characters in alphabetical order' do
       random_chars = 'cddbeeffa'.chars
 
@@ -11,7 +11,7 @@ describe '[ Code ]' do
     end
   end
 
-  describe '#palindrome?' do
+  describe 'Question 2. #palindrome?' do
     it 'should return true for palindrome word' do
       palindrome_word = 'efcfe'
 
@@ -27,7 +27,7 @@ describe '[ Code ]' do
     end
   end
 
-  describe '#reverse' do
+  describe 'Question 3. #reverse' do
     it 'should reverse any given string' do
       string = 'beepboop'
 
@@ -36,7 +36,7 @@ describe '[ Code ]' do
     end
   end
 
-  describe '#remove_dup' do
+  describe 'Question 4. #remove_dup' do
     it 'should remove duplicate values from an array' do
       arr = %w(a b a c d e b c)
 
@@ -45,12 +45,21 @@ describe '[ Code ]' do
     end
   end
 
-  describe '#shortest_gap' do
+  describe 'Question 5. #shortest_gap' do
     it 'should find the shortest gap between two set of time' do
       input = ['6:00PM-6:01PM', '6:02AM-6:03AM']
 
       result = Code.shortest_gap(input)
-      expect(result).to eq(717)
+      expect(result).to eq(43020)
+    end
+  end
+
+  describe 'Helper fn #sort' do
+    it 'should sort unsorted values from an array (ascending)' do
+      unsorted_array = [5, 4, 2, 1, 3]
+
+      results = Code.sort(unsorted_array)
+      expect(results).to eq([1,2,3,4,5])
     end
   end
 
