@@ -12,7 +12,7 @@
 3. Run the test with `rspec`
 
 Result should look something like this:
-![result](http://cl.ly/1v1r2t0G3d34)
+![result](http://f.cl.ly/items/2f3j1f2H1p1B2s3Y3R3E/Screen%20Shot%202016-01-27%20at%2010.49.16%20PM.png)
 
 &nbsp
 &nbsp
